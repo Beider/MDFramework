@@ -12,7 +12,7 @@ namespace MD
     {
         public static MethodInfo[] GetAllMethods(this Type Instance)
         {
-             return Instance.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
+             return Instance.GetMethods(MDStatics.BindFlagsAllMembers);
         }
 
         public static MethodInfo GetMethodRecursive(this Type Instance, string MethodName)
@@ -21,7 +21,7 @@ namespace MD
             Type CurType = Instance;
             while (CurType != null && Result == null)
             {
-                Result = CurType.GetMethod(MethodName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
+                Result = CurType.GetMethod(MethodName, MDStatics.BindFlagsAllMembers);
                 CurType = CurType.BaseType;
             }
 
